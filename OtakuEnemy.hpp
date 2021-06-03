@@ -8,6 +8,7 @@ private:
 public:
 	OtakuEnemy(int x, int y, float rp);
 	float getRushPoint();
+	void CreateBullet() override;
 };
 
 #endif // OTAKUENEMY_HPP_INCLUDED

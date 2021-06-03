@@ -14,7 +14,7 @@
 #include "Point.hpp"
 #include "Resources.hpp"
 #include <iostream>
-// TODO bonus : Try to finish it.
+// TODO BONUS : Try to finish it.
 PlayScene* Killer::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());
 }

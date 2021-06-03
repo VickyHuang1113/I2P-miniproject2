@@ -8,6 +8,7 @@
 #include "PlayScene.hpp"
 #include "Point.hpp"
 #include "Sprite.hpp"
+#include "Turret.hpp"
 
 PlayScene* Bullet::getPlayScene() {
 	return dynamic_cast<PlayScene*>(Engine::GameEngine::GetInstance().GetActiveScene());

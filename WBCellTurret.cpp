@@ -11,7 +11,7 @@
 #include "Enemy.hpp"
 const int WBCellTurret::Price = 30;
 WBCellTurret::WBCellTurret(float x, float y) :
-	Turret("play/turret-1.png", x, y, Price, 0.5) {
+	Turret("play/turret-1.png", x, y, 10, 50, Price, 0.5) {
 	// Move center downward, since the turret head is slightly biased upward.
 	Anchor.y += 8.0f / GetBitmapHeight();
 }

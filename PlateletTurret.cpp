@@ -12,7 +12,7 @@
 #include "Enemy.hpp"
 const int PlateletTurret::Price = 50;
 PlateletTurret::PlateletTurret(float x, float y) :
-	Turret("play/turret-2.png", x, y, Price, 0.5) {
+	Turret("play/turret-2.png", x, y, 10, 50, Price, 0.5) {
 	// Move center downward, since the turret head is slightly biased upward.
 	Anchor.y += 8.0f / GetBitmapHeight();
 }
@@ -22,7 +22,6 @@ void PlateletTurret::CreateBullet() {
 	Engine::Point normalized = diff.Normalize();
 	Engine::Point normal = Engine::Point(-normalized.y, normalized.x);
 	// Change bullet position to the front of the gun barrel.
-	// TODO3 (1/2): Add a Shoot Effect here.
     getPlayScene()->EffectGroup->AddNewObject(new ShootEffect(Position + normalized * 36));
 	getPlayScene()->BulletGroup->AddNewObject(new PockyBullet(Position + normalized * 36 - normal * 6, diff, rotation, this));
 	getPlayScene()->BulletGroup->AddNewObject(new PockyBullet(Position + normalized * 36 + normal * 6, diff, rotation, this));

@@ -11,9 +11,9 @@
 
 class Turret;
 
+//Created by imitating 'IceCreamBullet.hpp', 'IceCreamBullet.cpp'
 ChipBullet::ChipBullet(Engine::Point position, Engine::Point forwardDirection, float rotation, Turret* parent) :
 	Bullet("play/bullet-3.png", 500, 1, position, forwardDirection, rotation - ALLEGRO_PI / 2, parent, "Chip") {
-	    // TODO2 (1/8): You can imitate the 2 files: 'IceCreamBullet.hpp', 'IceCreamBullet.cpp' to create a new bullet
 }
 void ChipBullet::OnExplode(Enemy* enemy) {
 	std::random_device dev;

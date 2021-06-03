@@ -5,5 +5,6 @@
 class SofaEnemy : public Enemy {
 public:
 	SofaEnemy(int x, int y);
+	void CreateBullet() override;
 };
 #endif // SOFAENEMY_HPP

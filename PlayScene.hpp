@@ -48,6 +48,7 @@ public:
 	Group* GroundEffectGroup;
 	Group* DebugIndicatorGroup;
 	Group* BulletGroup;
+	Group* EnemyBulletGroup;
 	Group* TowerGroup;
 	Group* EnemyGroup;
 	Group* EffectGroup;

@@ -14,7 +14,6 @@
 int main(int argc, char **argv) {
 	Engine::LOG::SetConfig(true);
 	Engine::GameEngine& game = Engine::GameEngine::GetInstance();
-    // TODO1 (1/3): Add a New Scene here
     game.AddNewScene("setting", new SettingScene());
 	game.AddNewScene("stage-select", new StageSelectScene());
 	game.AddNewScene("play", new PlayScene());

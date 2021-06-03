@@ -40,7 +40,6 @@ const int PlayScene::BlockSize = 128;
 const float PlayScene::DangerTime = 7.61;
 const int PlayScene::SpawnGridPointx = 12;
 const int PlayScene::EndGridPointx = -1;
-// TODO4 (1/3): Set a cheat sequence here.
 const std::vector<int> PlayScene::code={ALLEGRO_KEY_UP, ALLEGRO_KEY_UP, ALLEGRO_KEY_DOWN, ALLEGRO_KEY_DOWN, ALLEGRO_KEY_LEFT, ALLEGRO_KEY_RIGHT, ALLEGRO_KEY_ENTER};
 
 Engine::Point PlayScene::GetClientSize()
@@ -65,6 +64,7 @@ void PlayScene::Initialize()
     AddNewObject(TowerGroup = new Group());
     AddNewObject(EnemyGroup = new Group());
     AddNewObject(BulletGroup = new Group());
+    AddNewObject(EnemyBulletGroup = new Group());
     AddNewObject(EffectGroup = new Group());
     // Should support buttons.
     AddNewControlObject(UIGroup = new Group());
@@ -179,9 +179,8 @@ void PlayScene::Update(float deltaTime)
             case 3:
                 EnemyGroup->AddNewObject(enemy = new StrongEnemy(SpawnCoordinate.x, SpawnCoordinate.y));
                 break;
-            // TODO2 (7/8): You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the 4th enemy.
+            // You need to modify 'resources/enemy1.txt', or 'resources/enemy2.txt' to spawn the 4th enemy.
             //         The format is "[EnemyId] [TimeDelay] [LaneNum] [Repeat]".
-            // TODO2 (8/8): Enable the creation of the 4th enemy.
             case 4:
                 EnemyGroup->AddNewObject(enemy = new OtakuEnemy(SpawnCoordinate.x, SpawnCoordinate.y, rp_dist(rng2)));
                 break;
@@ -272,13 +271,11 @@ void PlayScene::OnMouseUp(int button, int mx, int my)
 void PlayScene::OnKeyDown(int keyCode)
 {
     IScene::OnKeyDown(keyCode);
-    // TODO4 (2/3): Set Tab as a code to active or de-active debug mode
     if (keyCode == ALLEGRO_KEY_TAB) DebugMode = !DebugMode;
     else
     {
         keyStrokes.push_back(keyCode);
         if (keyStrokes.size() > code.size()) keyStrokes.pop_front();
-        // TODO4 (3/3): Check whether the input sequence is correct
         int i;
         std::list<int>::iterator it;
         for(it=keyStrokes.begin(), i=0; it!=keyStrokes.end() && i<7; it++, i++)if(*it!=code[i]) break;
@@ -298,7 +295,6 @@ void PlayScene::OnKeyDown(int keyCode)
         // Hotkey for PlateletTurret.
         UIBtnClicked(1);
     }
-    // TODO2 (5/8): Make the E key to create the 3th turret.
     else if (keyCode == ALLEGRO_KEY_E)
     {
         // Hotkey for RBCellTurret.
@@ -433,7 +429,6 @@ void PlayScene::ConstructUI()
     btn->SetOnClickCallback(std::bind(&PlayScene::UIBtnClicked, this, 1));
     UIGroup->AddNewControlObject(btn);
 
-    // TODO2 (3/8): Create a button to support constructing the 3th tower.
     // Button 3
     btn = new TurretButton("play/floor.png", "play/dirt.png",
                            Engine::Sprite("play/turret-3.png", 420, BlockSize*MapHeight, 0, 0, 0, 0)
@@ -459,7 +454,6 @@ void PlayScene::UIBtnClicked(int id)
     if (id == 0 && money >= WBCellTurret::Price) preview = new WBCellTurret(0, 0);
     else if (id == 1 && money >= PlateletTurret::Price) preview = new PlateletTurret(0, 0);
     else if (id == 2 && money >= RBCellTurret::Price) preview = new RBCellTurret(0, 0);
-    // TODO2 (4/8): On callback, create the 3th tower.
     if (!preview) return;
     preview->Position = Engine::GameEngine::GetInstance().GetMousePosition();
     preview->Tint = al_map_rgba(255, 255, 255, 200);

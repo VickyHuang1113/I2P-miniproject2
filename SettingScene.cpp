@@ -15,7 +15,7 @@
 
 void SettingScene::Initialize()
 {
-    // TODO1 (2/3): You can imitate the 2 files: 'LoseScene.hpp', 'LoseScene.cpp' to implement your setting scene.
+    //Created by imitating 'LoseScene.hpp', 'LoseScene.cpp'
     int w = Engine::GameEngine::GetInstance().GetScreenSize().x;
     int h = Engine::GameEngine::GetInstance().GetScreenSize().y;
     int halfW = w / 2;
@@ -27,7 +27,6 @@ void SettingScene::Initialize()
     AddNewControlObject(btn);
     AddNewObject(new Engine::Label("Back", "pirulen.ttf", 36, w-250, halfH * 7 / 4, 0, 0, 0, 255, 0.5, 0.5));
 
-    // TODO1 (3/3): Move the sliderBGM, sliderSFX to the setting Scene and make sure the background music will be played
     Slider *sliderBGM, *sliderSFX;
     sliderBGM = new Slider(40 + halfW - 95, halfH - 50 - 2, 190, 4);
     sliderBGM->SetOnValueChangedCallback(std::bind(&SettingScene::BGMSlideOnValueChanged, this, std::placeholders::_1));
